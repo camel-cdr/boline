@@ -22,7 +22,6 @@ int main(void) {
 
 // Basic Primitives
 
-
 #define B_SCAN(...) __VA_ARGS__
 #define B_FX(f,...) f(__VA_ARGS__)
 #define B_APPLY(f,...) f __VA_ARGS__
@@ -580,6 +579,11 @@ B_ASSERT(B64_IS_NEG(B64(f,f,f,f,f,f,f,f,f,f,f,f,f,f,f,f)) B64_IS_NEG(B64(3,3,3,3
 #define B32_ADD(x,y) (B_FX(B32_ADDr,,B_SCAN x,B_SCAN y))
 #define B64_ADD(x,y) (B_FX(B64_ADDr,,B_SCAN x,B_SCAN y))
 
+#define B8_ADDC(x,y) (B_FX(B8_ADDr,1,B_SCAN x,B_SCAN y))
+#define B16_ADDC(x,y) (B_FX(B16_ADDr,1,B_SCAN x,B_SCAN y))
+#define B32_ADDC(x,y) (B_FX(B32_ADDr,1,B_SCAN x,B_SCAN y))
+#define B64_ADDC(x,y) (B_FX(B64_ADDr,1,B_SCAN x,B_SCAN y))
+
 B_ASSERT(B8_FMT(B8_ADD(B8(2,1),B8(1,1))) B8_FMT(B8_ADD(B8(e,2),B8(3,2))),0x32 0x14)
 B_ASSERT(B16_FMT(B16_ADD(B16(e,7,5,6),B16(5,c,7,2))),0x43c8)
 B_ASSERT(B32_FMT(B32_ADD(B32(3,0,5,e,c,3,7,9),B32(2,2,3,3,f,8,5,d))),0x5292bbd6)
@@ -887,9 +891,9 @@ B_ASSERT(B8_FMT(B8_XOR(B8(3,7),B8(9,4))),0xa3)
 #define B64_LT(x,y) B64_IS_NEG(B64_SUB(x,y))
 
 #define B8_GE_(x) B1_ORe(B8_IS_NEGr x,B8_IS_0r x)
-#define B16_GE_(x) B1_ORe(B16_IS_NEGr x,B16__IS_0 x)
-#define B32_GE_(x) B1_ORe(B32_IS_NEGr x,B32__IS_0 x)
-#define B64_GE_(x) B1_ORe(B64_IS_NEGr x,B64__IS_0 x)
+#define B16_GE_(x) B1_ORe(B16_IS_NEGr x,B16_IS_0r x)
+#define B32_GE_(x) B1_ORe(B32_IS_NEGr x,B32_IS_0r x)
+#define B64_GE_(x) B1_ORe(B64_IS_NEGr x,B64_IS_0r x)
 
 #define B8_GE(x,y) B8_GE_(B8_SUB(y,x))
 #define B16_GE(x,y) B16_GE_(B16_SUB(y,x))
@@ -898,9 +902,9 @@ B_ASSERT(B8_FMT(B8_XOR(B8(3,7),B8(9,4))),0xa3)
 
 
 #define B8_LE_(x) B1_ORe(B8_IS_NEGr x,B8_IS_0r x)
-#define B16_LE_(x) B1_ORe(B16_IS_NEGr x,B16__IS_0 x)
-#define B32_LE_(x) B1_ORe(B32_IS_NEGr x,B32__IS_0 x)
-#define B64_LE_(x) B1_ORe(B64_IS_NEGr x,B64__IS_0 x)
+#define B16_LE_(x) B1_ORe(B16_IS_NEGr x,B16_IS_0r x)
+#define B32_LE_(x) B1_ORe(B32_IS_NEGr x,B32_IS_0r x)
+#define B64_LE_(x) B1_ORe(B64_IS_NEGr x,B64_IS_0r x)
 
 #define B8_LE(x,y) B8_LE_(B8_SUB(x,y))
 #define B16_LE(x,y) B16_LE_(B16_SUB(x,y))
