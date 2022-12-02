@@ -31,7 +31,7 @@
 
 /* parse decimal number with cur = (cur * 10) + x */
 #define RUN_NEXT(P,m1,m2,m3,sum,cur,x,...) (,0run,m1,m2,m3,sum, \
-		/* cur */ B32_ADD(B32_MUL(cur,B32_1(a)),B32_1(ASCII_##x)), \
+		/* cur */ B32_ADD(B32_MUL_B4(cur,a),B32_1(ASCII_##x)), \
 		P##__VA_ARGS__)
 
 /* update sum, or updated maximums depending on the value of "cur" */
@@ -45,21 +45,20 @@
 		/* cur */ B32_0, \
 		P##__VA_ARGS__)
 
-/* find the top3 largest values of 4 values using a sorting network */
-#define TOP3_OF_4(a,b,c,d) TOP3_OF_4_1(SORT2(a,c),SORT2(b,d))
-#define TOP3_OF_4_1_(a,c,b,d) TOP3_OF_4_2(SORT2(a,b),SORT2(c,d))
-#define TOP3_OF_4_2_(a,c,b,d) a,SORT2(b,c)
-#define TOP3_OF_4_1(...) TOP3_OF_4_1_(__VA_ARGS__)
-#define TOP3_OF_4_2(...) TOP3_OF_4_2_(__VA_ARGS__)
-#define SORT2(a,b) B_IFe(B32_GT(a,b))(a,b)(b,a)
+/* find the top3 largest values of 4 values */
+#define TOP3_OF_4(a,b,c,d) \
+	B_IFe(B32_LT(a,d))(d,a,b)( \
+		B_IFe(B32_LT(b,d))(a,d,b)( \
+			B_IFe(B32_LT(c,d))(a,b,d)(a,b,c)))
 
 /* dispatch our CM_0run using the BATCH construct defined in common.c */
 #define RUN(x) BATCH(,0run,(B32_0,B32_0,B32_0,B32_0,B32_0),x)
 
 
-#define EXAMPLE 31,30,30,30,0a,32,30,30,30,0a,33,30,30,30,0a,0a,34,30,30,30,0a,0a,35,30,30,30,0a,36,30,30,30,0a,0a,37,30,30,30,0a,38,30,30,30,0a,39,30,30,30,0a,0a,31,30,30,30,30,0a,0a
+#define EXAMPLE 31,30,30,30,0a,32,30,30,30,0a,33,30,30,30,0a,0a,34,30,30,30,0a,0a,35,30,30,30,0a,36,30,30,30,0a,0a,37,30,30,30,0a,38,30,30,30,0a,39,30,30,30,0a,0a,31,30,30,30,30,0a,0a,0a,0a
 
-example, expected 24000, 45000, got B_SCAN(B_OPEN RUN(EXAMPLE))
+
+expected 0x5dc0, 0xafc8, got B_SCAN(B_OPEN RUN(EXAMPLE))
 
 final result: RUN(INPUT)
 
