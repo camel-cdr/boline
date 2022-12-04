@@ -38,17 +38,17 @@
 
 /* just sum up all scores */
 #define RUN_NEXT(P,s1,s2,a,_0,b,_1,...) (,0run, \
-		B32_ADD(s1,B32_1(TBL1_##a##b)), \
-		B32_ADD(s2,B32_1(TBL2_##a##b)), \
+		B16_ADD(s1,B16_1(TBL1_##a##b)), \
+		B16_ADD(s2,B16_1(TBL2_##a##b)), \
 		P##__VA_ARGS__)
-#define RUN_END(P,s1,s2,...) ) B32_FMT(s1) B32_FMT(s2)
+#define RUN_END(P,s1,s2,...) ) B16_DECIMAL(s1) B16_DECIMAL(s2)
 
-#define RUN(...) CM(,0run,B32_0,B32_0,__VA_ARGS__,0end,)
+#define RUN(...) CM(,0run,B16_0,B16_0,__VA_ARGS__,0end,)
 
 
 
 #define EXAMPLE 41,20,59,0a,42,20,58,0a,43,20,5a,0a
-expected 0xf, got RUN(EXAMPLE)
+expected 15 12, got RUN(EXAMPLE)
 
 final result: RUN(INPUT)
 

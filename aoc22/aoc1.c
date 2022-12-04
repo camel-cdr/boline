@@ -21,13 +21,13 @@
  *         which happens to be when we hit a newline and cur == 0.
  */
 
-#define RUN__0a ,RUN_COMMA
+#define RUN__0a ,RUN_NEWLINE
 #define RUN__0end ,RUN_END
 #define RUN__0batch ,RUN_BATCH
 #define CM_0run(P,m1,m2,m3,sum,cur,x,...) B_CHECK(RUN__##x,RUN_NEXT)(,m1,m2,m3,sum,cur,x,P##__VA_ARGS__)
 
 #define RUN_BATCH(P,m1,m2,m3,sum,cur,...) )NEXT ,0run,(m1,m2,m3,sum,cur)
-#define RUN_END(P,m1,m2,m3,sum,cur,...) )END (B32_FMT(m1),B32_FMT(B32_ADD(m1,B32_ADD(m2,m3))))
+#define RUN_END(P,m1,m2,m3,sum,cur,...) )END (B32_DECIMAL(m1) B32_DECIMAL(B32_ADD(m1,B32_ADD(m2,m3))))
 
 /* parse decimal number with cur = (cur * 10) + x */
 #define RUN_NEXT(P,m1,m2,m3,sum,cur,x,...) (,0run,m1,m2,m3,sum, \
@@ -35,7 +35,7 @@
 		P##__VA_ARGS__)
 
 /* update sum, or updated maximums depending on the value of "cur" */
-#define RUN_COMMA(P,m1,m2,m3,sum,cur,x,...) (,0run, \
+#define RUN_NEWLINE(P,m1,m2,m3,sum,cur,x,...) (,0run, \
 		B_IFe(B32_IS_0(cur))( \
 			/* m1,m2,m3 */ TOP3_OF_4(m1,m2,m3,sum), \
 			/* sum */ B32_0 \
@@ -58,7 +58,7 @@
 #define EXAMPLE 31,30,30,30,0a,32,30,30,30,0a,33,30,30,30,0a,0a,34,30,30,30,0a,0a,35,30,30,30,0a,36,30,30,30,0a,0a,37,30,30,30,0a,38,30,30,30,0a,39,30,30,30,0a,0a,31,30,30,30,30,0a,0a,0a,0a
 
 
-expected 0x5dc0, 0xafc8, got B_SCAN(B_OPEN RUN(EXAMPLE))
+expected 24000 45000, got RUN(EXAMPLE)
 
 final result: RUN(INPUT)
 
