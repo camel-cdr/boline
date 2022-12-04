@@ -7,6 +7,7 @@
 
 /*
  * I'll spare you the comments, this is a huge mess, and I'm not proud of it.
+ * I even encountered an internal compiler error while throwing this monstrosity together.
  * But it works!
  */
 
