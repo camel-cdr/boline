@@ -24,18 +24,18 @@
 #define RUN__0a ,RUN_NEWLINE
 #define RUN__0end ,RUN_END
 #define RUN__0batch ,RUN_BATCH
-#define CM_0run(P,m1,m2,m3,sum,cur,x,...) B_CHECK(RUN__##x,RUN_NEXT)(,m1,m2,m3,sum,cur,x,P##__VA_ARGS__)
+#define CM_0run(P,m1,m2,m3,sum,cur,x,...) B_CHECK(RUN__##x,RUN_NEXT)(m1,m2,m3,sum,cur,x,__VA_ARGS__)
 
-#define RUN_BATCH(P,m1,m2,m3,sum,cur,...) )NEXT ,0run,(m1,m2,m3,sum,cur)
-#define RUN_END(P,m1,m2,m3,sum,cur,...) )END (B32_DECIMAL(m1) B32_DECIMAL(B32_ADD(m1,B32_ADD(m2,m3))))
+#define RUN_BATCH(m1,m2,m3,sum,cur,...) )NEXT ,0run,(m1,m2,m3,sum,cur)
+#define RUN_END(m1,m2,m3,sum,cur,...) )END (B32_DECIMAL(m1) B32_DECIMAL(B32_ADD(m1,B32_ADD(m2,m3))))
 
 /* parse decimal number with cur = (cur * 10) + x */
-#define RUN_NEXT(P,m1,m2,m3,sum,cur,x,...) (,0run,m1,m2,m3,sum, \
+#define RUN_NEXT(m1,m2,m3,sum,cur,x,...) (,0run,m1,m2,m3,sum, \
 		/* cur */ B32_ADD(B32_MUL_B4(cur,a),B32_1(ASCII_##x)), \
-		P##__VA_ARGS__)
+		__VA_ARGS__)
 
 /* update sum, or updated maximums depending on the value of "cur" */
-#define RUN_NEWLINE(P,m1,m2,m3,sum,cur,x,...) (,0run, \
+#define RUN_NEWLINE(m1,m2,m3,sum,cur,x,...) (,0run, \
 		B_IFe(B32_IS_0(cur))( \
 			/* m1,m2,m3 */ TOP3_OF_4(m1,m2,m3,sum), \
 			/* sum */ B32_0 \
@@ -43,7 +43,7 @@
 			/* m1,m2,m3,sum */ m1,m2,m3,B32_ADD(sum,cur) \
 		), \
 		/* cur */ B32_0, \
-		P##__VA_ARGS__)
+		__VA_ARGS__)
 
 /* find the top3 largest values of 4 values */
 #define TOP3_OF_4(a,b,c,d) \

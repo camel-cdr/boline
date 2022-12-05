@@ -42,24 +42,24 @@
 
 #define RUN__0end ,RUN_END
 #define RUN__0batch ,RUN_BATCH
-#define CM_0run(P,m1,m2,m3,m4,s1,s2,x,...) B_CHECK(RUN__##x,RUN_DEFAULT)(,m1,m2,m3,m4,s1,s2,x,P##__VA_ARGS__)
+#define CM_0run(P,m1,m2,m3,m4,s1,s2,x,...) B_CHECK(RUN__##x,RUN_DEFAULT)(m1,m2,m3,m4,s1,s2,x,__VA_ARGS__)
 
-#define RUN_BATCH(P,m1,m2,m3,m4,s1,s2,...) )NEXT ,0run,(m1,m2,m3,m4,s1,s2)
-#define RUN_END(P,m1,m2,m3,m4,s1,s2,...) )END (B16_DECIMAL(s1) B16_DECIMAL(s2))
+#define RUN_BATCH(m1,m2,m3,m4,s1,s2,...) )NEXT ,0run,(m1,m2,m3,m4,s1,s2)
+#define RUN_END(m1,m2,m3,m4,s1,s2,...) )END (B16_DECIMAL(s1) B16_DECIMAL(s2))
 
 /* prepend digits */
-#define RUN_DIGIT(P,m1,m2,m3,m4,s1,s2,x,...) (,0run,(ASCII_##x,B_OPEN m1),m2,m3,m4,s1,s2,P##__VA_ARGS__)
+#define RUN_DIGIT(m1,m2,m3,m4,s1,s2,x,...) (,0run,(ASCII_##x,B_OPEN m1),m2,m3,m4,s1,s2,__VA_ARGS__)
 
 /* rotate m1 to m4, unless the are allready filled, in that case update sum */
 #define RUN_PROBE(...) ,RUN_UPDATE
-#define RUN_DEFAULT(P,m1,m2,...) B_CHECK(RUN_PROBE m2,RUN_ROTATE)(,m1,m2,P##__VA_ARGS__)
+#define RUN_DEFAULT(m1,m2,...) B_CHECK(RUN_PROBE m2,RUN_ROTATE)(m1,m2,__VA_ARGS__)
 
-#define RUN_ROTATE(P,m1,m2,m3,m4,s1,s2,x,...) (,0run,(0),m3,m4,m1,s1,s2,P##__VA_ARGS__)
+#define RUN_ROTATE(m1,m2,m3,m4,s1,s2,x,...) (,0run,(0),m3,m4,m1,s1,s2,__VA_ARGS__)
 
-#define RUN_UPDATE(P,m4,m1,m2,m3,s1,s2,x,...) \
+#define RUN_UPDATE(m4,m1,m2,m3,s1,s2,x,...) \
 	(,0run,(0),,,, \
 		RUN_UPDATE_SUMS(s1,s2,B16_FROM_Bn(m1),B16_FROM_Bn(m2),B16_FROM_Bn(m3),B16_FROM_Bn(m4)), \
-	P##__VA_ARGS__)
+	__VA_ARGS__)
 #define RUN_UPDATE_SUMS(s1,s2,m1,m2,m3,m4) \
 	B_IFe(CONTAINS(m1,m2,m3,m4))(B16_INC(s1))(s1), \
 	B_IFe(OVERLAPS(m1,m2,m3,m4))(B16_INC(s2))(s2) \

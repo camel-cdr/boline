@@ -17,10 +17,10 @@
 
 #define EQ_0end_0end ,1
 
-#define CM_0contains(P,x,y,ys) B_CAT3e(CONTAINS,B_CHECK0(x##y),B_CHECK0(EQ_0end_##y))(,x,y,P##ys)
-#define CONTAINS00(P,x,y,ys) (,0contains,x,SEQ_OPEN P##ys)
-#define CONTAINS10(P,x,y,ys) )y
-#define CONTAINS01(P,x,y,ys) )0
+#define CM_0contains(P,x,y,ys) B_CAT3e(CONTAINS,B_CHECK0(x##y),B_CHECK0(EQ_0end_##y))(x,y,ys)
+#define CONTAINS00(x,y,ys) (,0contains,x,SEQ_OPEN ys)
+#define CONTAINS10(x,y,ys) )y
+#define CONTAINS01(x,y,ys) )0
 #define SEQ_CONTIANS(ys,x) CM(,0contains,EQ_##x,SEQ_OPEN ys(0end))
 
 SEQ_CONTIANS((76)(4a)(72)(77)(70)(57)(74)(77),74) == 74
@@ -29,10 +29,10 @@ SEQ_CONTIANS((76)(4a)(72)(77)(70)(57)(74)(77),nope) == 0
 
 
 #define INTERSECT_0end_0end ,INTERSECT_END
-#define CM_0intersect(P,xs,y,ys,rs) B_CHECK(INTERSECT_0end_##y,INTERSECT_NEXT)(,SEQ_CONTIANS(xs,y),P##xs,y,P##ys,P##rs)
+#define CM_0intersect(P,xs,y,ys,rs) B_CHECK(INTERSECT_0end_##y,INTERSECT_NEXT)(SEQ_CONTIANS(xs,y),xs,y,ys,rs)
 
-#define INTERSECT_END(P,c,xs,y,ys,rs) )P##rs
-#define INTERSECT_NEXT(P,c,xs,y,ys,rs) \
+#define INTERSECT_END(c,xs,y,ys,rs) )rs
+#define INTERSECT_NEXT(c,xs,y,ys,rs) \
 	(,0intersect,xs,SEQ_OPEN ys,B_WHENe(B_BOOL(c))((c))rs)
 
 
@@ -70,16 +70,16 @@ SCORE ((6a)(71)(48)(52)(4e)(71)(52)(6a)(71)(7a)(6a)(47)(44)(4c)(47)(4c)(72)(73)(
 #define RUN__0a ,RUN_NEWLINE
 #define RUN__0end ,RUN_END
 #define RUN__0batch ,RUN_BATCH
-#define CM_0run(P,xs,len,sum1,cnt,ys,sum2,x,...) B_CHECK(RUN__##x,RUN_NEXT)(,xs,len,sum1,cnt,ys,sum2,x,P##__VA_ARGS__)
+#define CM_0run(P,xs,len,sum1,cnt,ys,sum2,x,...) B_CHECK(RUN__##x,RUN_NEXT)(xs,len,sum1,cnt,ys,sum2,x,__VA_ARGS__)
 
-#define RUN_BATCH(P,xs,len,sum1,cnt,ys,sum2,...) )NEXT ,0run,(xs,len,sum1,cnt,ys,sum2)
-#define RUN_END(P,xs,len,sum1,cnt,ys,sum2,...) )END (B16_DECIMAL(sum1) \
+#define RUN_BATCH(xs,len,sum1,cnt,ys,sum2,...) )NEXT ,0run,(xs,len,sum1,cnt,ys,sum2)
+#define RUN_END(xs,len,sum1,cnt,ys,sum2,...) )END (B16_DECIMAL(sum1) \
 	B16_DECIMAL(B16_ADD(sum2,B16_FROM_Bn(SCORE_SEQ(ys(26))))))
 
-#define RUN_NEXT(P,xs,len,sum1,cnt,ys,sum2,x,...) (,0run,xs(x),B8_INC(len),sum1,cnt,ys,sum2,P##__VA_ARGS__)
+#define RUN_NEXT(xs,len,sum1,cnt,ys,sum2,x,...) (,0run,xs(x),B8_INC(len),sum1,cnt,ys,sum2,__VA_ARGS__)
 
-#define RUN_NEWLINE(P,xs,len,sum1,cnt,ys,sum2,x,...) RUN_NEWLINE_1(,SCORE(xs,len),sum1,PART2(cnt,ys,xs,sum2),P##__VA_ARGS__)
-#define RUN_NEWLINE_1(P,score,sum1,part2,...) (,0run,,B8_0,B16_ADD(B16_FROM_Bn(score),sum1),part2,P##__VA_ARGS__)
+#define RUN_NEWLINE(xs,len,sum1,cnt,ys,sum2,x,...) RUN_NEWLINE_1(SCORE(xs,len),sum1,PART2(cnt,ys,xs,sum2),__VA_ARGS__)
+#define RUN_NEWLINE_1(score,sum1,part2,...) (,0run,,B8_0,B16_ADD(B16_FROM_Bn(score),sum1),part2,__VA_ARGS__)
 
 
 #define PART2(cnt,ys,xs,sum) \

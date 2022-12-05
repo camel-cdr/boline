@@ -1,5 +1,7 @@
-#include "../boline/boline.c"
-#include "../boline/cm.c"
+#ifndef GODBOLT
+# include "../boline/boline.c"
+# include "../boline/cm.c"
+#endif
 
 /*
  * Some common utilities used in multiple aoc solutions
