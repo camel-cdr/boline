@@ -218,11 +218,6 @@ B32_IS_NEG(B32_DEC(B32_0))
 ### Continuation Machine (Recursion)
 
 
-```
-#include "/home/camel/git/boline/boline/boline.c"
-#include "/home/camel/git/boline/boline/cm.c"
-```
-
 <table>
 <tr><td><b>code.c</b></td><td><b>output</b></td></tr>
 <tr><td>
