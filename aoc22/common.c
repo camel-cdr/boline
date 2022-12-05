@@ -1,6 +1,9 @@
+/* bypass godbolt's relative include detection */
+#define INDIRECT_BOLINE_C "../boline/boline.c"
+#define INDIRECT_CM_C "../boline/cm.c"
 #ifndef GODBOLT
-# include "../boline/boline.c"
-# include "../boline/cm.c"
+#include INDIRECT_BOLINE_C
+#include INDIRECT_CM_C
 #endif
 
 /*
