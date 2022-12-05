@@ -33,16 +33,6 @@ So an expected output of `0.6` could be output as `3/5` and still count as a val
 ## Development Log
 
 
-* complexity:
-  My personal rating of how complex the implementation was.
-
-* loc:
-  The liens of code may not correlate with my perceived complexity, as creating lookup tables is very easy, but adds a lot of lines.
-
-* runtime:
-  Runtime on my PC with `tcc -P -E`. The runtime only partially reflect the performance of boline, since the inputs we are working with are raw bytes, which you wouldn't use in usual boline applications.
-
-
 | file             | complexity | loc | runtime | added features | postprocessing | godbolt                                      |
 | ----             | ---------- | --- | ------- | -------------- | -------------- | -------                                      |
 | [aoc1.c](aoc1.c) | 2/10       | 28  | 2.1 sec | `B<n>_MUL_B4`  | none           | [WK4zdW5vK](https://godbolt.org/z/WK4zdW5vK) |
@@ -50,4 +40,11 @@ So an expected output of `0.6` could be output as `3/5` and still count as a val
 | [aoc3.c](aoc3.c) | 9/10       | 64  | 9.2 sec | `B<n>_FROM_Bn` | none           | [ezozv1jTT](https://godbolt.org/z/ezozv1jTT) |
 | [aoc4.c](aoc4.c) | 3/10       | 35  | 1.0 sec |                | none           | [8TP8zeeb1](https://godbolt.org/z/8TP8zeeb1) |
 | [aoc5.c](aoc5.c) | 4/10       | 71  | 2.1 sec |                | none           | [M1bedjhEv](https://godbolt.org/z/M1bedjhEv) |
+
+
+* complexity: My personal rating of how complex the implementation was.
+
+* loc: The liens of code may not correlate with my perceived complexity, as creating lookup tables is very easy, but adds a lot of lines.
+
+* runtime: Runtime on my PC with `tcc -P -E`. The runtime only partially reflect the performance of boline, since the inputs we are working with are raw bytes, which you wouldn't use in usual boline applications.
 
