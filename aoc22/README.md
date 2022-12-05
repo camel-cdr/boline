@@ -43,9 +43,10 @@ So an expected output of `0.6` could be output as `3/5` and still count as a val
   Runtime on my PC with `tcc -P -E`. The runtime only partially reflect the performance of boline, since the inputs we are working with are raw bytes, which you wouldn't use in usual boline applications.
 
 
-| day         | complexity  | loc  | runtime |  added features | postprocessing |
+| day         | complexity  | loc  | runtime | added features  | postprocessing |
 | ----------- | ----------- | ---- | ------- | --------------- | -------------- |
-| [1](aoc1.c) | 2/10        |   28 | 2.0 sec |  `B<n>_MUL_B4`  |           none |
-| [2](aoc2.c) | 1/10        |   31 | 2.8 sec |                 |           none |
-| [3](aoc3.c) | 9/10        |   64 | 8.9 sec |  `B<n>_FROM_Bn` |           none |
+| [1](aoc1.c) | 2/10        | 28   | 2.0 sec | `B<n>_MUL_B4`   | none           |
+| [2](aoc2.c) | 1/10        | 31   | 2.8 sec |                 | none           |
+| [3](aoc3.c) | 9/10        | 64   | 8.9 sec | `B<n>_FROM_Bn`  | none           |
+| [4](aoc4.c) | 3/10        | 35   | 1.0 sec |                 | none           |
 

@@ -89,7 +89,6 @@ SCORE ((6a)(71)(48)(52)(4e)(71)(52)(6a)(71)(7a)(6a)(47)(44)(4c)(47)(4c)(72)(73)(
 		B8_DEC(cnt),INTERSECT(ys,xs),sum \
 	)
 
-/* dispatch our CM_0run using the BATCH construct defined in common.c */
 #define RUN(x) BATCH(,0run,(,B8_0,B16_0,B8_0,,B16_0),x)
 
 
