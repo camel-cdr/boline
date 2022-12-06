@@ -49,9 +49,17 @@ B_ASSERT(B_CAT(TRUE,FALSE) B_CATe(TRUE,FALSE),TRUEFALSE 10)
 #define B_CAT2e(...) B_CAT2(__VA_ARGS__)
 #define B_CAT3e(...) B_CAT3(__VA_ARGS__)
 #define B_CAT4e(...) B_CAT4(__VA_ARGS__)
+#define B_CAT5e(...) B_CAT5(__VA_ARGS__)
+#define B_CAT6e(...) B_CAT6(__VA_ARGS__)
+#define B_CAT7e(...) B_CAT7(__VA_ARGS__)
+#define B_CAT8e(...) B_CAT8(__VA_ARGS__)
 #define B_CAT2(a,b) a##b
 #define B_CAT3(a,b,c) a##b##c
 #define B_CAT4(a,b,c,d) a##b##c##d
+#define B_CAT5(a,b,c,d,e) a##b##c##d##e
+#define B_CAT6(a,b,c,d,e,f) a##b##c##d##e##f
+#define B_CAT7(a,b,c,d,e,f,g) a##b##c##d##e##f##g
+#define B_CAT8(a,b,c,d,e,f,g,h) a##b##c##d##e##f##g##h
 
 #define B_TUPLE_AT_0(a,...) a
 #define B_TUPLE_AT_1(b,a,...) a
@@ -1237,6 +1245,8 @@ B_ASSERT(B32_DECIMAL(B32(4,9,a,6,a,0,5,5)), 1235656789)
 
 // memory
 
+
+
 #define MEM__AT_f_P(...) ,MEM__AT_f
 #define MEM__AT_e_P(...) ,MEM__AT_e
 #define MEM__AT_d_P(...) ,MEM__AT_d
@@ -1299,12 +1309,12 @@ B_ASSERT(M16_AT((,,(,,,,,,,,,,,,(,(X,,,,,,,,,,,,,,,),,,,,,,,,,,,,,),,,),,,,,,,,,
 #define MEM__FX_7(F,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,...) (a,b,c,d,e,f,g,F MEM__EMPTY()()(h,__VA_ARGS__),i,j,k,l,m,n,o,p)
 #define MEM__FX_8(F,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,...) (a,b,c,d,e,f,g,h,F MEM__EMPTY()()(i,__VA_ARGS__),j,k,l,m,n,o,p)
 #define MEM__FX_9(F,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,...) (a,b,c,d,e,f,g,h,i,F MEM__EMPTY()()(j,__VA_ARGS__),k,l,m,n,o,p)
-#define MEM__FX_a(F,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,...) (a,b,c,d,e,f,g,h,i,k,F MEM__EMPTY()()(j,__VA_ARGS__),l,m,n,o,p)
-#define MEM__FX_b(F,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,...) (a,b,c,d,e,f,g,h,i,k,l,F MEM__EMPTY()()(j,__VA_ARGS__),m,n,o,p)
-#define MEM__FX_c(F,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,...) (a,b,c,d,e,f,g,h,i,k,l,m,F MEM__EMPTY()()(j,__VA_ARGS__),n,o,p)
-#define MEM__FX_d(F,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,...) (a,b,c,d,e,f,g,h,i,k,l,m,n,F MEM__EMPTY()()(j,__VA_ARGS__),o,p)
-#define MEM__FX_e(F,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,...) (a,b,c,d,e,f,g,h,i,k,l,m,n,o,F MEM__EMPTY()()(j,__VA_ARGS__),p)
-#define MEM__FX_f(F,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,...) (a,b,c,d,e,f,g,h,i,k,l,m,n,o,p,F MEM__EMPTY()()(j,__VA_ARGS__))
+#define MEM__FX_a(F,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,...) (a,b,c,d,e,f,g,h,i,j,F MEM__EMPTY()()(j,__VA_ARGS__),l,m,n,o,p)
+#define MEM__FX_b(F,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,...) (a,b,c,d,e,f,g,h,i,j,k,F MEM__EMPTY()()(j,__VA_ARGS__),m,n,o,p)
+#define MEM__FX_c(F,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,...) (a,b,c,d,e,f,g,h,i,j,k,l,F MEM__EMPTY()()(j,__VA_ARGS__),n,o,p)
+#define MEM__FX_d(F,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,...) (a,b,c,d,e,f,g,h,i,j,k,l,m,F MEM__EMPTY()()(j,__VA_ARGS__),o,p)
+#define MEM__FX_e(F,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,...) (a,b,c,d,e,f,g,h,i,j,k,l,m,n,F MEM__EMPTY()()(j,__VA_ARGS__),p)
+#define MEM__FX_f(F,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,...) (a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,F MEM__EMPTY()()(j,__VA_ARGS__))
 
 
 #define MEM__PUT_FX(f,...) f(__VA_ARGS__)
@@ -1351,7 +1361,7 @@ B_ASSERT(M16_AT((,,(,,,,,,,,,,,,(,(X,,,,,,,,,,,,,,,),,,,,,,,,,,,,,),,,),,,,,,,,,
 #define MEM__PUT_4(m,x,...) MEM__PUT_N(MEM__PUT_3_ID,m,x,__VA_ARGS__)
 #define MEM__PUT_3(m,x,...) MEM__PUT_N(MEM__PUT_2_ID,m,x,__VA_ARGS__)
 #define MEM__PUT_2(m,x,...) MEM__PUT_N(MEM__PUT_1_ID,m,x,__VA_ARGS__)
-#define MEM__PUT_1(m,x,...)  MEM__PUT_N(MEM__PUT_0_ID,m,x,__VA_ARGS__)
+#define MEM__PUT_1(m,x,...) MEM__PUT_N(MEM__PUT_0_ID,m,x,__VA_ARGS__)
 #define MEM__PUT_0(m,x)  x
 
 
@@ -1374,7 +1384,6 @@ B_ASSERT(M16_AT(M16_PUT(,B16(3,1,2,f),X),B16(3,1,2,f)), X)
 B_ASSERT(M16_AT(M16_PUT(,B16(3,1,f),X),B16(3,1,f)), X)
 B_ASSERT(M32_AT(M32_PUT(,B32(3,1,2,f,1),X),B32(3,1,2,f,1)), X)
 B_ASSERT(M64_AT(M64_PUT(,B64(1,2,3,3,1,2,f),X),B64(1,2,3,3,1,2,f)), X)
-
 
 
 #if B_ASSERT_ENABLE

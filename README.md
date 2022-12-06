@@ -215,6 +215,34 @@ B32_IS_NEG(B32_DEC(B32_0))
 </td></tr></table>
 
 
+### Memory
+
+
+<table>
+<tr><td><b>code.c</b></td><td><b>output</b></td></tr>
+<tr><td>
+
+```c
+#include "/home/camel/git/boline/boline/boline.c"
+
+M8_AT(M8_PUT(M8_PUT(,B8(4,2),Y),B8(1,2),X),B8(4,2))
+M8_PUT(,B8(1,e),X)
+M8_PUT(M8_PUT(M8_PUT(,B8(1,e),X),B8(1,f),Y),B8(2,0),Z)
+```
+
+</td><td>
+
+```c
+​
+​
+Y
+(,(,,,,,,,,,,,,,,X,),,,,,,,,,,,,,,)
+(,(,,,,,,,,,,,,,,X,Y),(Z,,,,,,,,,,,,,,,),,,,,,,,,,,,,)
+```
+
+</td></tr></table>
+
+
 ### Continuation Machine (Recursion)
 
 
