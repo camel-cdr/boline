@@ -7,12 +7,12 @@
 
 
 #define CM_0distinct(P,n,m,a,...) B_IFe(B8_IS_0(n))(DISTINCT_END1)(DISTINCT_NEXT)(,n,m,B8_##a,P##__VA_ARGS__)
+#define DISTINCT_END0(...) )0
 #define DISTINCT_END1(...) )1
 #define DISTINCT_PROBE(...) ,DISTINCT_END0
 #define DISTINCT_NEXT(P,n,m,a,...) B_CHECK(B_APPLY(DISTINCT_PROBE,M8_AT(m,a)),DISTINCT_NEXT1)(,n,m,a,P##__VA_ARGS__)
 #define DISTINCT_NEXT1(P,n,m,a,...) (,0distinct,B8_DEC(n),M8_PUT(m,a,()),P##__VA_ARGS__)
 
-#define DISTINCT_END0(...) )0
 
 #define DISTINCT(P,n,...) CM(,0distinct,n,,P##__VA_ARGS__)
 
