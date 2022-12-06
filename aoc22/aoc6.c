@@ -5,6 +5,7 @@
  * AOC 2022 Day 6: https://adventofcode.com/2022/day/6
  */
 
+
 #define CM_0distinct(P,n,m,a,...) B_IFe(B8_IS_0(n))(DISTINCT_END1)(DISTINCT_NEXT)(,n,m,B8_##a,P##__VA_ARGS__)
 #define DISTINCT_END1(...) )1
 #define DISTINCT_PROBE(...) ,DISTINCT_END0
@@ -15,8 +16,8 @@
 
 #define DISTINCT(P,n,...) CM(,0distinct,n,,P##__VA_ARGS__)
 
-DISTINCT(,B8(3),77,78,79,77,78)
-DISTINCT(,B8(4),77,78,79,77,78)
+DISTINCT(,B8(3),77,78,79,77,78) == 1
+DISTINCT(,B8(4),77,78,79,77,78) == 0
 
 
 
