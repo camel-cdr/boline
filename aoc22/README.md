@@ -33,15 +33,15 @@ So an expected output of `0.6` could be output as `3/5` and still count as a val
 ## Development Log
 
 
-| file             | complexity | loc | runtime | added features | postprocessing | godbolt                                      |
-| ----             | ---------- | --- | ------- | -------------- | -------------- | -------                                      |
-| [aoc1.c](aoc1.c) | 2/10       | 28  | 2.1 sec | `B<n>_MUL_B4`  | none           | [WK4zdW5vK](https://godbolt.org/z/WK4zdW5vK) |
-| [aoc2.c](aoc2.c) | 1/10       | 31  | 2.8 sec |                | none           | [cKef7jPWs](https://godbolt.org/z/cKef7jPWs) |
-| [aoc3.c](aoc3.c) | 9/10       | 64  | 9.2 sec | `B<n>_FROM_Bn` | none           | [ezozv1jTT](https://godbolt.org/z/ezozv1jTT) |
-| [aoc4.c](aoc4.c) | 3/10       | 35  | 1.0 sec |                | none           | [8TP8zeeb1](https://godbolt.org/z/8TP8zeeb1) |
-| [aoc5.c](aoc5.c) | 4/10       | 71  | 2.1 sec |                | none           | [M1bedjhEv](https://godbolt.org/z/M1bedjhEv) |
-| [aoc6.c](aoc6.c) | 2/10       | 26  | 4.9 sec | `M<n>_PUT/_AT` | none           | [7694fsWe9](https://godbolt.org/z/7694fsWe9) |
-| [aoc7.c](aoc7.c) | 6/10       | 53  | TODO    |                | none           | [ohjdhE378](https://godbolt.org/z/ohjdhE378) |
+| file             | complexity | loc | runtime  | added features | postprocessing | godbolt                                      |
+| ----             | ---------- | --- | -------  | -------------- | -------------- | -------                                      |
+| [aoc1.c](aoc1.c) | 2/10       | 28  | 2.1 sec  | `B<n>_MUL_B4`  | none           | [WK4zdW5vK](https://godbolt.org/z/WK4zdW5vK) |
+| [aoc2.c](aoc2.c) | 1/10       | 31  | 2.8 sec  |                | none           | [cKef7jPWs](https://godbolt.org/z/cKef7jPWs) |
+| [aoc3.c](aoc3.c) | 9/10       | 64  | 9.2 sec  | `B<n>_FROM_Bn` | none           | [ezozv1jTT](https://godbolt.org/z/ezozv1jTT) |
+| [aoc4.c](aoc4.c) | 3/10       | 35  | 1.0 sec  |                | none           | [8TP8zeeb1](https://godbolt.org/z/8TP8zeeb1) |
+| [aoc5.c](aoc5.c) | 4/10       | 71  | 2.1 sec  |                | none           | [M1bedjhEv](https://godbolt.org/z/M1bedjhEv) |
+| [aoc6.c](aoc6.c) | 2/10       | 26  | 4.9 sec  | `M<n>_PUT/_AT` | none           | [7694fsWe9](https://godbolt.org/z/7694fsWe9) |
+| [aoc7.c](aoc7.c) | 6/10       | 53  | 11.7 sec |                | none           | [ohjdhE378](https://godbolt.org/z/ohjdhE378) |
 
 
 * complexity: My personal rating of how complex the implementation was.
