@@ -59,7 +59,9 @@
 /*
  * Lookup table to convert hex ASCII characters to tokens:
  */
+#define ASCII_20
 #define ASCII_21 !
+#define ASCII_24 $
 #define ASCII_25 %
 #define ASCII_26 &
 #define ASCII_28 (
