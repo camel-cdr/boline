@@ -42,7 +42,7 @@
 #define PARSE_END(P,t,...) )t,
 #define PARSE_FILE(P,t,...) (,0file,t,B32_0,P##__VA_ARGS__)
 #define PARSE_SKIPLN(P,t,a,b,c,d,...) (,0skipln0,t,P##__VA_ARGS__),
-#define PARSE_DIR(P,t,a,b,c,d,...) (,0skipln,t,P##__VA_ARGS__)(,)
+#define PARSE_DIR(P,t,a,b,c,d,e,...) (,0skipln,t,P##__VA_ARGS__)(,)
 
 #define PARSE(...) CM(,0parse,B32_0,__VA_ARGS__,0end,)
 
@@ -60,7 +60,7 @@ PARSE(EXAMPLE)
 #define RUN_PROBE(...) ,RUN_NEXT,
 #define CM_0run(P,t,m,n,c,s,x,...) B_CHECK(RUN_PROBE x,RUN_CD)(,t,m,n,c,s,x,P##__VA_ARGS__)
 #define RUN_CD(P,t,m,n,c,s,x,...) (,0run,t,\
-	B_IFe(B32_LE(B32_SUB(t,c),MIN))(B32_MIN(c,m))(m), \
+	B_IFe(B32_LE(t,c))(B32_MIN(c,m))(m), \
 	B_IFe(B32_LE(c,MAX))(B32_ADD(n,c))(n),\
 	B32_0,c s,P##__VA_ARGS__)
 
@@ -77,7 +77,7 @@ PARSE(EXAMPLE)
 #define RUN_END(P,t,m,n,c,s,x,xs,...) )B32_DECIMAL(n) B32_DECIMAL(m)
 
 
-#define RUN2(a,...) CM(,0run,a,B32(7,f,f,f,f,f,f,f),B32_0,B32_0,,__VA_ARGS__,(0end,))
+#define RUN2(a,...) CM(,0run,B32_SUB(a,MIN),B32(7,f,f,f,f,f,f,f),B32_0,B32_0,,__VA_ARGS__,(0end,))
 #define RUN1(...) RUN2(__VA_ARGS__)
 #define RUN(...) RUN1(PARSE(__VA_ARGS__))
 

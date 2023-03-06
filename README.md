@@ -225,9 +225,9 @@ B32_IS_NEG(B32_DEC(B32_0))
 ```c
 #include "/home/camel/git/boline/boline/boline.c"
 
-M8_AT(M8_PUT(M8_PUT(,B8(4,2),Y),B8(1,2),X),B8(4,2))
-M8_PUT(,B8(1,e),X)
-M8_PUT(M8_PUT(M8_PUT(,B8(1,e),X),B8(1,f),Y),B8(2,0),Z)
+M8_AT(B8(4,2),M8_PUT(B8(1,2),X,M8_PUT(B8(4,2),Y,)))
+M8_PUT(B8(1,e),X,)
+M8_PUT(B8(2,0),Z,M8_PUT(B8(1,f),Y,M8_PUT(B8(1,e),X,)))
 ```
 
 </td><td>

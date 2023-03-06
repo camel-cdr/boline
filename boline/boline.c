@@ -832,7 +832,7 @@ B_ASSERT(B32_HEX(B32_MUL(B32(0,1,3,2,3,2,4,6),B32(f,f,1,2,3,2,f,e))),0x408b8d74)
 	          C##x6(A##y5),C##x7(A##y5),C##x8(A##y5),C##x9(A##y5),C##x0(A##y6), \
 	B32_ADDr_(C##x1(A##y6),C##x2(A##y6),C##x3(A##y6),C##x4(A##y6),C##x5(A##y6), \
 	          C##x6(A##y6),C##x7(A##y6),C##x8(A##y6),C##x0(A##y7), \
-	B28_ADDr_(C##x1(A##y7),C##x2(A##y7),C##x3(A##y7),C##x4(A##y7),C##x5(A##y7),C##x6(A##y7),C##x7(A##y6),C##x0(A##y8), \
+	B28_ADDr_(C##x1(A##y7),C##x2(A##y7),C##x3(A##y7),C##x4(A##y7),C##x5(A##y7),C##x6(A##y7),C##x7(A##y7),C##x0(A##y8), \
 	B24_ADDr_(C##x1(A##y8),C##x2(A##y8),C##x3(A##y8),C##x4(A##y8),C##x5(A##y8),C##x6(A##y8),C##x0(A##y9), \
 	B20_ADDr_(C##x1(A##y9),C##x2(A##y9),C##x3(A##y9),C##x4(A##y9),C##x5(A##y9),C##x0(A##ya), \
 	B16_ADDr_(C##x1(A##ya),C##x2(A##ya),C##x3(A##ya),C##x4(A##ya),C##x0(A##yb), \
@@ -854,8 +854,8 @@ B_ASSERT(B32_HEX(B32_MUL(B32(0,1,3,2,3,2,4,6),B32(f,f,1,2,3,2,f,e))),0x408b8d74)
 	B36_ADDr_(M##x1(A##y6),M##x2(A##y6),M##x3(A##y6),M##x4(A##y6),M##x5(A##y6), \
 	          M##x6(A##y6),M##x7(A##y6),M##x8(A##y6),M##x9(A##y6),M##x0(A##y7), \
 	B32_ADDr_(M##x1(A##y7),M##x2(A##y7),M##x3(A##y7),M##x4(A##y7),M##x5(A##y7), \
-	          M##x6(A##y7),M##x7(A##y6),M##x8(A##y7),M##x0(A##y8), \
-	B28_ADDr_(M##x1(A##y8),M##x2(A##y8),M##x3(A##y8),M##x4(A##y8),M##x5(A##y8),M##x6(A##y8),M##x7(A##y7),M##x0(A##y9), \
+	          M##x6(A##y7),M##x7(A##y7),M##x8(A##y7),M##x0(A##y8), \
+	B28_ADDr_(M##x1(A##y8),M##x2(A##y8),M##x3(A##y8),M##x4(A##y8),M##x5(A##y8),M##x6(A##y8),M##x7(A##y8),M##x0(A##y9), \
 	B24_ADDr_(M##x1(A##y9),M##x2(A##y9),M##x3(A##y9),M##x4(A##y9),M##x5(A##y9),M##x6(A##y9),M##x0(A##ya), \
 	B20_ADDr_(M##x1(A##ya),M##x2(A##ya),M##x3(A##ya),M##x4(A##ya),M##x5(A##ya),M##x0(A##yb), \
 	B16_ADDr_(M##x1(A##yb),M##x2(A##yb),M##x3(A##yb),M##x4(A##yb),M##x0(A##yc), \
@@ -864,6 +864,8 @@ B_ASSERT(B32_HEX(B32_MUL(B32(0,1,3,2,3,2,4,6),B32(f,f,1,2,3,2,f,e))),0x408b8d74)
 	B8_ADD_1(,M##x1(A##ye),M##x0(A##yf)))))))))))))))))
 
 B_ASSERT(B64_HEX(B64_MUL(B64(a,f,3,3,2,9,4,6,0,1,3,2,3,2,4,6),B64(9,9,1,2,7,1,1,e,f,f,1,2,3,2,f,e))),0x1fee7f80408b8d74)
+B_ASSERT(B64_HEX(B64_MUL(B64(d,e,a,d,b,e,e,f),B64(d,e,a,d,b,e,e,f))),0xc1b1cd12216da321)
+
 
 
 #define B8_MUL_B4(x,y) (B8_MUL_B4__1(B_SCAN x,B4_AT_##y))
@@ -1281,20 +1283,20 @@ B_ASSERT(B32_DECIMAL(B32(4,9,a,6,a,0,5,5)), 1235656789)
 #define MEM__AT_1(M) M
 #define MEM__AT_0(...)
 
-#define M8_AT(M,x) B_FX(M8__AT,M,B_OPEN x)
+#define M8_AT(x,M) B_FX(M8__AT,M,B_OPEN x)
 #define M8__AT(M,a,b) MEM__AT_2(B4_AT_##b M,a)
 
-#define M16_AT(M,x) B_FX(M16__AT,M,B_OPEN x)
+#define M16_AT(x,M) B_FX(M16__AT,M,B_OPEN x)
 #define M16__AT(M,a,b,c,d) MEM__AT_4(B4_AT_##d M,c,b,a)
 
-#define M32_AT(M,x) B_FX(M32__AT,M,B_OPEN x)
+#define M32_AT(x,M) B_FX(M32__AT,M,B_OPEN x)
 #define M32__AT(M,a,b,c,d,e,f,g,h) MEM__AT_8(B4_AT_##h M,g,f,e,d,c,b,a)
 
-#define M64_AT(M,x) B_FX(M64__AT,M,B_OPEN x)
+#define M64_AT(x,M) B_FX(M64__AT,M,B_OPEN x)
 #define M64__AT(M,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p) MEM__AT_g(B4_AT_##p M,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a)
 
-B_ASSERT(M8_AT((,,(,,,,,,,,,,,,X,,,),,,,,,,,,,,,,),B8(2,c)), X)
-B_ASSERT(M16_AT((,,(,,,,,,,,,,,,(,(X,,,,,,,,,,,,,,,),,,,,,,,,,,,,,),,,),,,,,,,,,,,,,),B16(2,c,1,0)), X)
+B_ASSERT(M8_AT(B8(2,c),(,,(,,,,,,,,,,,,X,,,),,,,,,,,,,,,,)), X)
+B_ASSERT(M16_AT(B16(2,c,1,0),(,,(,,,,,,,,,,,,(,(X,,,,,,,,,,,,,,,),,,,,,,,,,,,,,),,,),,,,,,,,,,,,,)), X)
 
 
 
@@ -1365,25 +1367,25 @@ B_ASSERT(M16_AT((,,(,,,,,,,,,,,,(,(X,,,,,,,,,,,,,,,),,,,,,,,,,,,,,),,,),,,,,,,,,
 #define MEM__PUT_0(m,x)  x
 
 
-#define M8_PUT(M,x,v) MEM__EVAL2(B_FX(M8__PUT,M,v,B_OPEN x))
+#define M8_PUT(x,v,M) MEM__EVAL2(B_FX(M8__PUT,M,v,B_OPEN x))
 #define M8__PUT(M,v,a,b) MEM__PUT_N(MEM__PUT_1_ID,M,b,a,v)
 
-#define M16_PUT(M,x,v) MEM__EVAL4(B_FX(M16__PUT,M,v,B_OPEN x))
+#define M16_PUT(x,v,M) MEM__EVAL4(B_FX(M16__PUT,M,v,B_OPEN x))
 #define M16__PUT(M,v,a,b,c,d) MEM__PUT_N(MEM__PUT_3_ID,M,d,c,b,a,v)
 
-#define M32_PUT(M,x,v) MEM__EVAL8(B_FX(M32__PUT,M,v,B_OPEN x))
+#define M32_PUT(x,v,M) MEM__EVAL8(B_FX(M32__PUT,M,v,B_OPEN x))
 #define M32__PUT(M,v,a,b,c,d,e,f,g,h) MEM__PUT_N(MEM__PUT_7_ID,M,h,g,f,e,d,c,b,a,v)
 
-#define M64_PUT(M,x,v) MEM__EVALf(B_FX(M64__PUT,M,v,B_OPEN x))
+#define M64_PUT(x,v,M) MEM__EVALf(B_FX(M64__PUT,M,v,B_OPEN x))
 #define M64__PUT(M,v,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p) \
 		MEM__PUT_N(MEM__PUT_f_ID,M,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,v)
 
 
-B_ASSERT(M8_AT(M8_PUT(M8_PUT(,B8(1,3),X),B8(1,4),Y),B8(1,3)), X)
-B_ASSERT(M16_AT(M16_PUT(,B16(3,1,2,f),X),B16(3,1,2,f)), X)
-B_ASSERT(M16_AT(M16_PUT(,B16(3,1,f),X),B16(3,1,f)), X)
-B_ASSERT(M32_AT(M32_PUT(,B32(3,1,2,f,1),X),B32(3,1,2,f,1)), X)
-B_ASSERT(M64_AT(M64_PUT(,B64(1,2,3,3,1,2,f),X),B64(1,2,3,3,1,2,f)), X)
+B_ASSERT(M8_AT(B8(1,3),M8_PUT(B8(1,4),Y,M8_PUT(B8(1,3),X,))), X)
+B_ASSERT(M16_AT(B16(3,1,2,f),M16_PUT(B16(3,1,2,f),X,)), X)
+B_ASSERT(M16_AT(B16(3,1,f),M16_PUT(B16(3,1,f),X,)), X)
+B_ASSERT(M32_AT(B32(3,1,2,f,1),M32_PUT(B32(3,1,2,f,1),X,)), X)
+B_ASSERT(M64_AT(B64(1,2,3,3,1,2,f),M64_PUT(B64(1,2,3,3,1,2,f),X,)), X)
 
 
 #if B_ASSERT_ENABLE

@@ -33,7 +33,7 @@
 
 #define CM_0batch(_,fx,xx,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z, \
 	                 A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,...) \
-	B_CATe(BATCH__,CM(,fx,B_OPEN xx, \
+	B_CATe(BATCH__,CM(,fx,B_OPEN _##xx, \
 		a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z, \
 		A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,0batch,)),_##__VA_ARGS__)
 /*
@@ -46,14 +46,14 @@
 #define BATCH__NEXT BATCH_NEXT(
 #define BATCH__END BATCH_END(
 
-#define BATCH_NEXT(P,fx,xx,...) (,0batch,fx,xx,P##__VA_ARGS__)
+#define BATCH_NEXT(P,fx,xx,...) (,0batch,fx,P##xx,P##__VA_ARGS__)
 #define BATCH_END(xx,...) )B_SCAN(B_OPEN xx)
 
 /* The arguments need to be properly padded to avoid having
  * too few arguments for CM_0batch  */
 #define BATCH_PADDING52 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 #define BATCH_PADDING BATCH_PADDING52 BATCH_PADDING52
-#define BATCH(P,fx,xx,...) CM(,0batch,fx,xx,P##__VA_ARGS__,0end,BATCH_PADDING)
+#define BATCH(P,fx,xx,...) CM(,0batch,fx,P##xx,P##__VA_ARGS__,0end,BATCH_PADDING)
 
 
 /*
