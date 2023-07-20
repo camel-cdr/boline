@@ -46,7 +46,7 @@ So an expected output of `0.6` could be output as `3/5` and still count as a val
 
 * complexity: My personal rating of how complex the implementation was.
 
-* loc: The liens of code may not correlate with my perceived complexity, as creating lookup tables is very easy, but adds a lot of lines.
+* loc: The lines of code, may not correlate with my perceived complexity, as creating lookup tables is very easy, but adds a lot of lines.
 
 * runtime: Runtime on my PC with `tcc -P -E`. The runtime only partially reflect the performance of boline, since the inputs we are working with are raw bytes, which you wouldn't use in usual boline applications.
 
